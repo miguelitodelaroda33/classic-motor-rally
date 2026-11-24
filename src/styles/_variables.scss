@@ -1,0 +1,57 @@
+// ==========================================================================
+// TOKENS DE DISEÑO - CLASSIC MOTOR CLUB
+// ==========================================================================
+
+// 1. Paleta Cromática
+$color-racing-green: #004225;       // British Racing Green (Primario)
+$color-racing-green-dark: #002917;  // Estado hover / activo
+$color-racing-green-light: #e6efe9; // Fondo suave de acento
+
+$color-burgundy: #6b1d2f;           // Burdeos clásico (Secundario / Acento)
+$color-burgundy-dark: #4a121f;      // Hover secundario
+
+$color-leather: #8b5a2b;            // Cuero envejecido (Detalles y foco)
+$color-leather-light: #f3ece4;      // Fondo cálido suave
+
+$color-chrome: #cfd4da;             // Bordes metálicos / cromados
+$color-chrome-dark: #8c959f;        // Texto secundario / sutil
+
+$color-cream: #f8f5ee;              // Fondo general tipo papel/pergamino
+$color-white: #ffffff;              // Superficie de tarjetas
+$color-charcoal: #1e2022;           // Texto principal (alto contraste WCAG)
+
+$color-success: #1b6b3a;            // Validación correcta
+$color-error: #a61c1c;              // Error de formulario
+
+// 2. Tipografía
+$font-serif: 'Playfair Display', Georgia, serif;
+$font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+$text-xs: 0.75rem;    // 12px
+$text-sm: 0.875rem;   // 14px
+$text-base: 1rem;     // 16px
+$text-lg: 1.125rem;   // 18px
+$text-xl: 1.5rem;     // 24px
+$text-2xl: 2rem;      // 32px
+$text-3xl: 2.75rem;   // 44px
+
+// 3. Espaciados
+$space-xs: 0.5rem;    // 8px
+$space-sm: 1rem;      // 16px
+$space-md: 1.5rem;    // 24px
+$space-lg: 2.5rem;    // 40px
+$space-xl: 4rem;      // 64px
+
+// 4. Bordes y Sombras
+$radius-sm: 4px;
+$radius-md: 8px;
+$shadow-card: 0 4px 12px rgba(30, 32, 34, 0.08);
+$shadow-card-hover: 0 8px 20px rgba(30, 32, 34, 0.14);
+$transition-base: 0.25s ease;
+
+// 5. Breakpoints Obligatorios (Estrategia Mobile-First)
+$bp-mobile: 375px;
+$bp-tablet: 768px;
+$bp-desktop: 1440px;
+$container-max: 1280px;
