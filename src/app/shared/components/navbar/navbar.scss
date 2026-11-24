@@ -1,0 +1,121 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.navbar {
+  background-color: $color-racing-green;
+  color: $color-white;
+  border-bottom: 3px solid $color-leather;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__container {
+    @include container;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-sm;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: $text-lg;
+  }
+
+  &__emblem {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid $color-chrome;
+    border-radius: $radius-sm;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: 0.1em;
+    color: $color-cream;
+  }
+
+  &__toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid $color-chrome;
+    border-radius: $radius-sm;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    @include respond-tablet {
+      display: none;
+    }
+  }
+
+  &__toggle-bar {
+    width: 22px;
+    height: 2px;
+    background-color: $color-white;
+  }
+
+  &__nav {
+    display: none;
+    width: 100%;
+    padding-top: $space-sm;
+
+    &--open {
+      display: block;
+    }
+
+    @include respond-tablet {
+      display: block;
+      width: auto;
+      padding-top: 0;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+
+    @include respond-tablet {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-md;
+    }
+
+    @include respond-desktop {
+      gap: $space-lg;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    font-size: $text-sm;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid transparent;
+    transition: color $transition-base, border-color $transition-base;
+
+    &:hover {
+      color: $color-cream;
+      border-bottom-color: $color-leather;
+    }
+
+    &--active {
+      border-bottom-color: $color-cream;
+      font-weight: 700;
+    }
+
+    &--highlight {
+      border: 1px solid $color-chrome;
+      border-radius: $radius-sm;
+    }
+  }
+}

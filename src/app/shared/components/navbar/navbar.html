@@ -1,1 +1,60 @@
-<p>navbar works!</p>
+<header class="navbar">
+  <div class="navbar__container">
+    <a routerLink="/" class="navbar__brand" (click)="cerrarMenu()">
+      <span class="navbar__emblem">CMC</span>
+      <span class="navbar__title">Classic Motor Club</span>
+    </a>
+
+    <button
+      type="button"
+      class="navbar__toggle"
+      [attr.aria-expanded]="menuAbierto()"
+      aria-label="Abrir o cerrar menú de navegación"
+      (click)="toggleMenu()">
+      <span class="navbar__toggle-bar"></span>
+      <span class="navbar__toggle-bar"></span>
+      <span class="navbar__toggle-bar"></span>
+    </button>
+
+    <nav class="navbar__nav" [class.navbar__nav--open]="menuAbierto()" aria-label="Navegación principal">
+      <ul class="navbar__list">
+        <li class="navbar__item">
+          <a
+            routerLink="/"
+            routerLinkActive="navbar__link--active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="navbar__link"
+            (click)="cerrarMenu()">Inicio</a>
+        </li>
+        <li class="navbar__item">
+          <a
+            routerLink="/catalogo"
+            routerLinkActive="navbar__link--active"
+            class="navbar__link"
+            (click)="cerrarMenu()">Catálogo</a>
+        </li>
+        <li class="navbar__item">
+          <a
+            routerLink="/itinerario"
+            routerLinkActive="navbar__link--active"
+            class="navbar__link"
+            (click)="cerrarMenu()">Itinerario</a>
+        </li>
+        <li class="navbar__item">
+          <a
+            routerLink="/inscripcion"
+            routerLinkActive="navbar__link--active"
+            class="navbar__link"
+            (click)="cerrarMenu()">Inscripción</a>
+        </li>
+        <li class="navbar__item">
+          <a
+            routerLink="/guia-estilo"
+            routerLinkActive="navbar__link--active"
+            class="navbar__link navbar__link--highlight"
+            (click)="cerrarMenu()">Guía de Estilo</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

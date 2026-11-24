@@ -1,9 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  imports: [],
   selector: 'app-navbar',
-  styleUrl: './navbar.scss',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
+  styleUrl: './navbar.scss'
 })
-export class Navbar {}
+export class Navbar {
+  menuAbierto = signal(false);
+
+  toggleMenu(): void {
+    this.menuAbierto.update(valor => !valor);
+  }
+
+  cerrarMenu(): void {
+    this.menuAbierto.set(false);
+  }
+}
