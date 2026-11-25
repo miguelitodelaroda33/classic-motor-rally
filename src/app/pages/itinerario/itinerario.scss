@@ -1,0 +1,161 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.itinerario {
+  padding-block: $space-lg;
+
+  &__header {
+    margin-bottom: $space-lg;
+    border-bottom: 2px solid $color-chrome;
+    padding-bottom: $space-md;
+  }
+
+  &__subtitle {
+    margin-top: $space-xs;
+    max-width: 65ch;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+
+    @include respond-desktop {
+      grid-template-columns: 3fr 2fr;
+      align-items: start;
+    }
+  }
+}
+
+.cronograma {
+  &__heading {
+    margin-bottom: $space-md;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__item {
+    background-color: $color-white;
+    border: 1px solid $color-chrome;
+    border-left: 5px solid $color-racing-green;
+    border-radius: $radius-md;
+    padding: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    box-shadow: $shadow-card;
+
+    @include respond-tablet {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    &--tramo {
+      border-left-color: $color-burgundy;
+    }
+  }
+
+  &__time-box {
+    display: flex;
+    gap: $space-sm;
+    align-items: baseline;
+    min-width: 110px;
+
+    @include respond-tablet {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+
+  &__time {
+    font-family: $font-mono;
+    font-size: $text-lg;
+    font-weight: 700;
+    color: $color-racing-green;
+  }
+
+  &__km {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $color-leather;
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: $space-xs;
+  }
+
+  &__badge {
+    background-color: $color-burgundy;
+    color: $color-white;
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: $radius-sm;
+  }
+
+  &__location {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-leather;
+  }
+
+  &__desc {
+    font-size: $text-sm;
+  }
+}
+
+.ruta-mapa {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-radius: $radius-md;
+  padding: $space-md;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  &__frame-wrapper {
+    height: 300px;
+    border: 1px solid $color-chrome-dark;
+    border-radius: $radius-sm;
+    overflow: hidden;
+  }
+
+  &__frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  &__stats {
+    list-style: none;
+    margin-top: $space-xs;
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+    font-size: $text-sm;
+  }
+
+  &__stats li {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px dashed $color-chrome;
+  }
+}

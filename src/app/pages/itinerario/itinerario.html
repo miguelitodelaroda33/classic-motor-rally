@@ -1,1 +1,59 @@
-<p>itinerario works!</p>
+<section class="itinerario">
+  <div class="container">
+    <header class="itinerario__header">
+      <h1 class="itinerario__title">Itinerario y Programa Oficial</h1>
+      <p class="itinerario__subtitle">
+        Horarios oficiales de la jornada, puntos de control de paso y trazado completo de la prueba de regularidad.
+      </p>
+    </header>
+
+    <div class="itinerario__layout">
+      <!-- Cronograma de Actividades -->
+      <div class="cronograma">
+        <h2 class="cronograma__heading">Cronograma de la Jornada</h2>
+        <ol class="cronograma__list">
+          @for (item of programa; track item.hora) {
+            <li class="cronograma__item" [class.cronograma__item--tramo]="item.esTramoCronometrado">
+              <div class="cronograma__time-box">
+                <span class="cronograma__time">{{ item.hora }} h</span>
+                <span class="cronograma__km">{{ item.distancia }}</span>
+              </div>
+              <div class="cronograma__content">
+                <div class="cronograma__top">
+                  <h3 class="cronograma__title">{{ item.titulo }}</h3>
+                  @if (item.esTramoCronometrado) {
+                    <span class="cronograma__badge">TRAMO REGULARIDAD</span>
+                  }
+                </div>
+                <p class="cronograma__location">{{ item.ubicacion }}</p>
+                <p class="cronograma__desc">{{ item.descripcion }}</p>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+
+      <!-- Mapa de Etapas -->
+      <aside class="ruta-mapa">
+        <h2 class="ruta-mapa__heading">Mapa de las Etapas</h2>
+        <div class="ruta-mapa__frame-wrapper">
+          <iframe
+            class="ruta-mapa__frame"
+            title="Mapa general del recorrido Sierra de Guadarrama"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-4.6500%2C40.4200%2C-3.9500%2C40.8200&amp;layer=mapnik&amp;marker=40.5891%2C-4.1477"
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="ruta-mapa__resumen">
+          <h3>Datos Técnicos del Recorrido</h3>
+          <ul class="ruta-mapa__stats">
+            <li><span>Longitud total:</span> <strong>185,4 km</strong></li>
+            <li><span>Tramos cronometrados:</span> <strong>2 sectores (94 km)</strong></li>
+            <li><span>Velocidad media máx.:</span> <strong>49,9 km/h</strong></li>
+            <li><span>Superficie:</span> <strong>100% Asfalto</strong></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

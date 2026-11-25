@@ -1,1 +1,76 @@
-<p>inicio works!</p>
+<!-- 1. Banner Principal -->
+<section class="hero">
+  <div class="container hero__container">
+    <span class="hero__eyebrow">20 DE DICIEMBRE DE 2026 · SIERRA DE GUADARRAMA</span>
+    <h1 class="hero__title">I Rally &amp; Concentración Histórica Classic Motor</h1>
+    <p class="hero__subtitle">
+      Elegancia atemporal y precisión cronométrica en una jornada de regularidad histórica para automóviles fabricados hasta 1985.
+    </p>
+    <div class="hero__actions">
+      <a routerLink="/inscripcion" class="btn btn--secondary">Inscribir Vehículo</a>
+      <a routerLink="/catalogo" class="btn btn--outline hero__btn-light">Ver Parque Cerrado</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Vehículos Destacados -->
+<section class="destacados">
+  <div class="container">
+    <header class="destacados__header">
+      <div>
+        <h2 class="destacados__title">Automóviles Destacados</h2>
+        <p class="destacados__subtitle">Una selección de las joyas mecánicas confirmadas para la primera edición.</p>
+      </div>
+      <a routerLink="/catalogo" class="btn btn--outline">Catálogo Completo</a>
+    </header>
+
+    <div class="destacados__grid">
+      @for (coche of destacados(); track coche.id) {
+        <app-vehiculo-card
+          [vehiculo]="coche"
+          (verFicha)="abrirFicha($event)" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 3. Punto de Encuentro y Mapa -->
+<section class="ubicacion">
+  <div class="container ubicacion__container">
+    <div class="ubicacion__info">
+      <span class="ubicacion__tag">PARQUE CERRADO Y SALIDA</span>
+      <h2 class="ubicacion__title">Real Sitio de San Lorenzo de El Escorial</h2>
+      <p class="ubicacion__text">
+        La recepción de participantes, verificaciones técnicas y entrega de dorsales tendrán lugar en la Explanada de la Lonja a partir de las 08:30 h.
+      </p>
+      <ul class="ubicacion__details">
+        <li><strong>Coordenadas GPS:</strong> 40.5891° N, 4.1477° O</li>
+        <li><strong>Distancia total:</strong> 185 km (4 tramos de regularidad)</li>
+        <li><strong>Admisión:</strong> Vehículos históricos con más de 30 años</li>
+      </ul>
+      <a routerLink="/itinerario" class="btn btn--primary">Consultar Itinerario Oficial</a>
+    </div>
+
+    <div class="ubicacion__map-wrapper">
+      <iframe
+        class="ubicacion__map"
+        title="Mapa del punto de encuentro en San Lorenzo de El Escorial"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-4.1600%2C40.5820%2C-4.1350%2C40.5960&amp;layer=mapnik&amp;marker=40.5891%2C-4.1477"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Modal rápido de ficha desde Inicio -->
+@if (vehiculoSeleccionado(); as coche) {
+  <div class="inicio-modal" role="dialog" aria-modal="true" aria-labelledby="inicio-modal-title">
+    <div class="inicio-modal__backdrop" (click)="cerrarFicha()"></div>
+    <article class="inicio-modal__content">
+      <h3 id="inicio-modal-title">{{ coche.marca }} {{ coche.modelo }} ({{ coche.anio }})</h3>
+      <p class="inicio-modal__meta">Dorsal #{{ coche.dorsal }} · {{ coche.categoria }} · {{ coche.potencia }}</p>
+      <p class="inicio-modal__history">{{ coche.historial }}</p>
+      <button type="button" class="btn btn--primary" (click)="cerrarFicha()">Cerrar</button>
+    </article>
+  </div>
+}
