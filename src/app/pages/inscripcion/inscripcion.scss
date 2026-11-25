@@ -1,0 +1,157 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.inscripcion {
+  padding-block: $space-lg;
+
+  &__header {
+    margin-bottom: $space-lg;
+    border-bottom: 2px solid $color-chrome;
+    padding-bottom: $space-md;
+  }
+
+  &__subtitle {
+    margin-top: $space-xs;
+    max-width: 65ch;
+  }
+}
+
+.form-rally {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-radius: $radius-md;
+  padding: $space-md;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+
+  @include respond-tablet {
+    padding: $space-lg;
+  }
+
+  &__fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__legend {
+    font-family: $font-serif;
+    font-size: $text-xl;
+    font-weight: 700;
+    color: $color-racing-green;
+    padding-bottom: $space-xs;
+    border-bottom: 1px solid $color-chrome;
+    width: 100%;
+    margin-bottom: $space-sm;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-md;
+
+    @include respond-tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-charcoal;
+  }
+
+  &__input {
+    padding: 0.65rem $space-sm;
+    font-family: $font-sans;
+    font-size: $text-base;
+    color: $color-charcoal;
+    background-color: $color-cream;
+    border: 1px solid $color-chrome-dark;
+    border-radius: $radius-sm;
+    transition: border-color $transition-base;
+
+    &:focus {
+      border-color: $color-racing-green;
+    }
+
+    &--error {
+      border-color: $color-error;
+      background-color: #fdf3f3;
+    }
+  }
+
+  &__error {
+    font-size: $text-xs;
+    font-weight: 600;
+    color: $color-error;
+  }
+
+  &__terms {
+    background-color: $color-leather-light;
+    padding: $space-md;
+    border-radius: $radius-sm;
+    border-left: 4px solid $color-leather;
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-xs;
+    font-size: $text-sm;
+    cursor: pointer;
+  }
+
+  &__checkbox {
+    margin-top: 0.25rem;
+    width: 18px;
+    height: 18px;
+    accent-color: $color-racing-green;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.inscripcion-ok {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-top: 5px solid $color-success;
+  border-radius: $radius-md;
+  padding: $space-lg;
+  box-shadow: $shadow-card;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-md;
+
+  &__badge {
+    background-color: $color-racing-green-light;
+    color: $color-success;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: $radius-sm;
+  }
+
+  &__detail {
+    font-size: $text-sm;
+    color: $color-leather;
+  }
+}

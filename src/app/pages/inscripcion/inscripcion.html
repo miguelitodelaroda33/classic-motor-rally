@@ -1,1 +1,186 @@
-<p>inscripcion works!</p>
+<section class="inscripcion">
+  <div class="container">
+    <header class="inscripcion__header">
+      <h1 class="inscripcion__title">Solicitud de Inscripción</h1>
+      <p class="inscripcion__subtitle">
+        Completa el boletín oficial para reservar plaza en el Parque Cerrado. Se admiten vehículos históricos fabricados hasta 1985.
+      </p>
+    </header>
+
+    @if (registroExitoso() && datosConfirmados(); as datos) {
+      <div class="inscripcion-ok" role="status" aria-live="polite">
+        <span class="inscripcion-ok__badge">PREINSCRIPCIÓN REGISTRADA</span>
+        <h2 class="inscripcion-ok__title">¡Gracias, {{ datos['piloto'] }}!</h2>
+        <p class="inscripcion-ok__text">
+          Hemos recibido la solicitud para el <strong>{{ datos['marca'] }} {{ datos['modelo'] }} ({{ datos['anio'] }})</strong> en la categoría <strong>{{ datos['categoria'] }}</strong>.
+        </p>
+        <p class="inscripcion-ok__detail">
+          En breve recibirás la hoja de verificación técnica y el número de dorsal provisional en <strong>{{ datos['email'] }}</strong>.
+        </p>
+        <button type="button" class="btn btn--primary" (click)="nuevaInscripcion()">
+          Registrar otro vehículo
+        </button>
+      </div>
+    } @else {
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="form-rally" novalidate>
+        <!-- Bloque 1: Datos del Equipo -->
+        <fieldset class="form-rally__fieldset">
+          <legend class="form-rally__legend">1. Datos del Equipo Participante</legend>
+
+          <div class="form-rally__grid">
+            <div class="form-rally__field">
+              <label for="piloto" class="form-rally__label">Nombre y apellidos del Piloto *</label>
+              <input
+                id="piloto"
+                type="text"
+                formControlName="piloto"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('piloto')"
+                [attr.aria-invalid]="tieneError('piloto')"
+                placeholder="Ej. Carlos Mendoza" />
+              @if (tieneError('piloto')) {
+                <span class="form-rally__error" role="alert">Introduce el nombre completo del piloto (mínimo 3 caracteres).</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="copiloto" class="form-rally__label">Nombre del Copiloto / Navegante</label>
+              <input
+                id="copiloto"
+                type="text"
+                formControlName="copiloto"
+                class="form-rally__input"
+                placeholder="Opcional si participa sin navegante" />
+            </div>
+
+            <div class="form-rally__field">
+              <label for="email" class="form-rally__label">Correo electrónico de contacto *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('email')"
+                [attr.aria-invalid]="tieneError('email')"
+                placeholder="piloto@classicmotor.es" />
+              @if (tieneError('email')) {
+                <span class="form-rally__error" role="alert">Introduce un correo electrónico válido.</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="telefono" class="form-rally__label">Teléfono móvil *</label>
+              <input
+                id="telefono"
+                type="tel"
+                formControlName="telefono"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('telefono')"
+                [attr.aria-invalid]="tieneError('telefono')"
+                placeholder="600 123 456" />
+              @if (tieneError('telefono')) {
+                <span class="form-rally__error" role="alert">Introduce un teléfono válido de al menos 9 dígitos.</span>
+              }
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Bloque 2: Datos del Automóvil -->
+        <fieldset class="form-rally__fieldset">
+          <legend class="form-rally__legend">2. Datos del Vehículo Clásico</legend>
+
+          <div class="form-rally__grid">
+            <div class="form-rally__field">
+              <label for="marca" class="form-rally__label">Marca *</label>
+              <input
+                id="marca"
+                type="text"
+                formControlName="marca"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('marca')"
+                [attr.aria-invalid]="tieneError('marca')"
+                placeholder="Ej. Jaguar, Porsche, SEAT..." />
+              @if (tieneError('marca')) {
+                <span class="form-rally__error" role="alert">Indica la marca del fabricante.</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="modelo" class="form-rally__label">Modelo y versión *</label>
+              <input
+                id="modelo"
+                type="text"
+                formControlName="modelo"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('modelo')"
+                [attr.aria-invalid]="tieneError('modelo')"
+                placeholder="Ej. E-Type Series 1 3.8" />
+              @if (tieneError('modelo')) {
+                <span class="form-rally__error" role="alert">Indica el modelo exacto del automóvil.</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="anio" class="form-rally__label">Año de fabricación (1920 - 1985) *</label>
+              <input
+                id="anio"
+                type="number"
+                formControlName="anio"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('anio')"
+                [attr.aria-invalid]="tieneError('anio')"
+                placeholder="1968" />
+              @if (tieneError('anio')) {
+                <span class="form-rally__error" role="alert">Solo se admiten vehículos fabricados entre 1920 y 1985.</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="matricula" class="form-rally__label">Matrícula (Original o Histórica) *</label>
+              <input
+                id="matricula"
+                type="text"
+                formControlName="matricula"
+                class="form-rally__input"
+                [class.form-rally__input--error]="tieneError('matricula')"
+                [attr.aria-invalid]="tieneError('matricula')"
+                placeholder="Ej. M-458920 o H-1234-BBB" />
+              @if (tieneError('matricula')) {
+                <span class="form-rally__error" role="alert">Introduce una matrícula válida.</span>
+              }
+            </div>
+
+            <div class="form-rally__field">
+              <label for="categoria" class="form-rally__label">Categoría FEVA *</label>
+              <select id="categoria" formControlName="categoria" class="form-rally__input">
+                @for (cat of categorias; track cat) {
+                  <option [value]="cat">{{ cat }}</option>
+                }
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Aceptación de Reglamento -->
+        <div class="form-rally__terms">
+          <label class="form-rally__checkbox-label">
+            <input
+              type="checkbox"
+              formControlName="aceptaReglamento"
+              class="form-rally__checkbox" />
+            <span>
+              Declaro que el vehículo dispone de ITV y seguro en vigor, y acepto el Reglamento Particular de Regularidad Histórica del Classic Motor Club. *
+            </span>
+          </label>
+          @if (tieneError('aceptaReglamento')) {
+            <span class="form-rally__error" role="alert">Debes aceptar el reglamento para formalizar la inscripción.</span>
+          }
+        </div>
+
+        <div class="form-rally__actions">
+          <button type="submit" class="btn btn--secondary">Enviar Solicitud de Inscripción</button>
+        </div>
+      </form>
+    }
+  </div>
+</section>
