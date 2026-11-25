@@ -1,1 +1,31 @@
-<p>vehiculo-card works!</p>
+<article class="vehiculo-card" [class.vehiculo-card--destacado]="vehiculo().destacado">
+  <div class="vehiculo-card__media">
+    <img
+      [src]="vehiculo().imagen"
+      [alt]="vehiculo().marca + ' ' + vehiculo().modelo + ' de ' + vehiculo().anio"
+      class="vehiculo-card__image"
+      (error)="onImageError($event)" />
+    <span class="vehiculo-card__dorsal">#{{ vehiculo().dorsal }}</span>
+    <span class="vehiculo-card__badge">{{ vehiculo().categoria }}</span>
+  </div>
+
+  <div class="vehiculo-card__body">
+    <div class="vehiculo-card__meta">
+      <span class="vehiculo-card__year">{{ vehiculo().anio }}</span>
+      <span class="vehiculo-card__power">{{ vehiculo().potencia }}</span>
+    </div>
+
+    <h3 class="vehiculo-card__title">{{ vehiculo().marca }} {{ vehiculo().modelo }}</h3>
+    <p class="vehiculo-card__description">{{ vehiculo().descripcionCorta }}</p>
+
+    <div class="vehiculo-card__footer">
+      <span class="vehiculo-card__team">Piloto: {{ vehiculo().piloto }}</span>
+      <button
+        type="button"
+        class="btn btn--outline vehiculo-card__btn"
+        (click)="verFicha.emit(vehiculo())">
+        Ficha Técnica
+      </button>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,214 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.catalogo {
+  padding-block: $space-lg;
+
+  &__header {
+    margin-bottom: $space-lg;
+    border-bottom: 2px solid $color-chrome;
+    padding-bottom: $space-md;
+  }
+
+  &__subtitle {
+    margin-top: $space-xs;
+    color: $color-charcoal;
+    max-width: 65ch;
+  }
+
+  &__controls {
+    background-color: $color-white;
+    border: 1px solid $color-chrome;
+    border-radius: $radius-md;
+    padding: $space-md;
+    margin-bottom: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__search {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+  }
+
+  &__label {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-racing-green;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.65rem $space-sm;
+    font-family: $font-sans;
+    font-size: $text-base;
+    border: 1px solid $color-chrome-dark;
+    border-radius: $radius-sm;
+    background-color: $color-cream;
+
+    @include respond-tablet {
+      max-width: 420px;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+  }
+
+  &__chip {
+    padding: 0.45rem 0.9rem;
+    font-family: $font-sans;
+    font-size: $text-xs;
+    font-weight: 600;
+    background-color: $color-cream;
+    color: $color-charcoal;
+    border: 1px solid $color-chrome-dark;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    &:hover {
+      border-color: $color-racing-green;
+    }
+
+    &--active {
+      background-color: $color-racing-green;
+      color: $color-white;
+      border-color: $color-racing-green;
+    }
+  }
+
+  &__counter {
+    font-size: $text-sm;
+    margin-bottom: $space-md;
+    color: $color-leather;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-md;
+
+    @include respond-tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__empty {
+    background-color: $color-white;
+    border: 1px dashed $color-chrome-dark;
+    border-radius: $radius-md;
+    padding: $space-xl $space-md;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-md;
+  }
+}
+
+.modal-ficha {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-sm;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(30, 32, 34, 0.7);
+  }
+
+  &__content {
+    position: relative;
+    background-color: $color-white;
+    border-top: 5px solid $color-burgundy;
+    border-radius: $radius-md;
+    width: 100%;
+    max-width: 600px;
+    padding: $space-md;
+    box-shadow: $shadow-card-hover;
+    z-index: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $space-sm;
+    border-bottom: 1px solid $color-chrome;
+    padding-bottom: $space-sm;
+  }
+
+  &__dorsal {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 600;
+    color: $color-leather;
+  }
+
+  &__close {
+    background: transparent;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    color: $color-charcoal;
+  }
+
+  &__body {
+    padding-block: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__specs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-sm;
+    background-color: $color-cream;
+    padding: $space-sm;
+    border-radius: $radius-sm;
+
+    @include respond-tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__spec-item dt {
+    font-size: $text-xs;
+    text-transform: uppercase;
+    color: $color-chrome-dark;
+  }
+
+  &__spec-item dd {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-racing-green;
+  }
+
+  &__history h3 {
+    margin-bottom: $space-xs;
+    font-size: $text-base;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $color-chrome;
+    padding-top: $space-sm;
+  }
+}

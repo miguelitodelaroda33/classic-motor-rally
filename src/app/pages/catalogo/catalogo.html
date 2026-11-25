@@ -1,1 +1,104 @@
-<p>catalogo works!</p>
+<section class="catalogo">
+  <div class="container">
+    <header class="catalogo__header">
+      <h1 class="catalogo__title">Parque Cerrado · Vehículos Inscritos</h1>
+      <p class="catalogo__subtitle">
+        Explora los automóviles clásicos admitidos en el I Rally &amp; Concentración Histórica y consulta su ficha técnica.
+      </p>
+    </header>
+
+    <!-- Panel de Filtros Reactivos -->
+    <div class="catalogo__controls" role="search" aria-label="Filtrar vehículos inscritos">
+      <div class="catalogo__search">
+        <label for="buscador-vehiculos" class="catalogo__label">Buscar por marca, modelo, año o dorsal:</label>
+        <input
+          id="buscador-vehiculos"
+          type="search"
+          class="catalogo__input"
+          placeholder="Ej. Jaguar, 1966, 04..."
+          [value]="busquedaTexto()"
+          (input)="actualizarBusqueda($event)" />
+      </div>
+
+      <div class="catalogo__categories" role="group" aria-label="Filtrar por categoría">
+        @for (cat of categorias; track cat) {
+          <button
+            type="button"
+            class="catalogo__chip"
+            [class.catalogo__chip--active]="categoriaActiva() === cat"
+            (click)="seleccionarCategoria(cat)">
+            {{ cat }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <p class="catalogo__counter">
+      Mostrando <strong>{{ vehiculosFiltrados().length }}</strong> de {{ vehiculos().length }} vehículos inscritos
+    </p>
+
+    <!-- Grid de Vehículos -->
+    @if (vehiculosFiltrados().length > 0) {
+      <div class="catalogo__grid">
+        @for (coche of vehiculosFiltrados(); track coche.id) {
+          <app-vehiculo-card
+            [vehiculo]="coche"
+            (verFicha)="abrirFicha($event)" />
+        }
+      </div>
+    } @else {
+      <div class="catalogo__empty">
+        <p>No se encontraron automóviles que coincidan con los filtros seleccionados.</p>
+        <button type="button" class="btn btn--primary" (click)="limpiarFiltros()">
+          Restablecer filtros
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Modal de Ficha Técnica Detallada -->
+  @if (vehiculoSeleccionado(); as coche) {
+    <div class="modal-ficha" role="dialog" aria-modal="true" [attr.aria-labelledby]="'modal-titulo-' + coche.id">
+      <div class="modal-ficha__backdrop" (click)="cerrarFicha()"></div>
+      <article class="modal-ficha__content">
+        <header class="modal-ficha__header">
+          <div>
+            <span class="modal-ficha__dorsal">DORSAL #{{ coche.dorsal }} · {{ coche.categoria }}</span>
+            <h2 [id]="'modal-titulo-' + coche.id" class="modal-ficha__title">
+              {{ coche.marca }} {{ coche.modelo }} ({{ coche.anio }})
+            </h2>
+          </div>
+          <button type="button" class="modal-ficha__close" aria-label="Cerrar ficha técnica" (click)="cerrarFicha()">
+            &times;
+          </button>
+        </header>
+
+        <div class="modal-ficha__body">
+          <dl class="modal-ficha__specs">
+            <div class="modal-ficha__spec-item">
+              <dt>Potencia declarada</dt>
+              <dd>{{ coche.potencia }}</dd>
+            </div>
+            <div class="modal-ficha__spec-item">
+              <dt>Motorización</dt>
+              <dd>{{ coche.cilindrada }}</dd>
+            </div>
+            <div class="modal-ficha__spec-item">
+              <dt>Equipo</dt>
+              <dd>{{ coche.piloto }} / {{ coche.copiloto }}</dd>
+            </div>
+          </dl>
+
+          <div class="modal-ficha__history">
+            <h3>Historial y Documentación</h3>
+            <p>{{ coche.historial }}</p>
+          </div>
+        </div>
+
+        <footer class="modal-ficha__footer">
+          <button type="button" class="btn btn--primary" (click)="cerrarFicha()">Cerrar Ficha</button>
+        </footer>
+      </article>
+    </div>
+  }
+</section>
