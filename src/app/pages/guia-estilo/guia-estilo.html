@@ -1,1 +1,95 @@
-<p>guia-estilo works!</p>
+<section class="guia-estilo">
+  <div class="container">
+    <header class="guia-estilo__header">
+      <span class="guia-estilo__eyebrow">SISTEMA DE DISEÑO &amp; TOKENS SCSS</span>
+      <h1 class="guia-estilo__title">Guía de Estilo · Classic Motor Club</h1>
+      <p class="guia-estilo__subtitle">
+        Documentación viva de la identidad visual, paleta cromática, escala tipográfica y componentes BEM utilizados en la aplicación.
+      </p>
+    </header>
+
+    <!-- 1. Paleta Cromática -->
+    <section class="guia-bloque" aria-labelledby="guia-colores">
+      <h2 id="guia-colores" class="guia-bloque__title">1. Paleta Cromática</h2>
+      <p class="guia-bloque__desc">
+        Inspirada en la competición automovilística clásica europea. Haz clic en cualquier muestra para copiar su código hexadecimal.
+      </p>
+
+      <div class="paleta-grid">
+        @for (color of paleta; track color.variable) {
+          <article class="swatch-card">
+            <button
+              type="button"
+              class="swatch-card__color"
+              [style.background-color]="color.hex"
+              [class.swatch-card__color--light-text]="color.textoClaro"
+              (click)="copiarHex(color.hex)">
+              <span class="swatch-card__hex">
+                {{ colorCopiado() === color.hex ? '¡Copiado!' : color.hex }}
+              </span>
+            </button>
+            <div class="swatch-card__info">
+              <h3 class="swatch-card__name">{{ color.nombre }}</h3>
+              <code class="swatch-card__var">{{ color.variable }}</code>
+              <p class="swatch-card__uso">{{ color.uso }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+
+    <!-- 2. Tipografía -->
+    <section class="guia-bloque" aria-labelledby="guia-tipografia">
+      <h2 id="guia-tipografia" class="guia-bloque__title">2. Jerarquía Tipográfica</h2>
+      <div class="tipo-lista">
+        <div class="tipo-lista__item">
+          <span class="tipo-lista__meta">Playfair Display · Bold · $font-serif</span>
+          <h1>Encabezado Principal H1 (44px Desktop / 32px Mobile)</h1>
+        </div>
+        <div class="tipo-lista__item">
+          <span class="tipo-lista__meta">Playfair Display · Bold · $font-serif</span>
+          <h2>Encabezado de Sección H2 (32px Desktop / 24px Mobile)</h2>
+        </div>
+        <div class="tipo-lista__item">
+          <span class="tipo-lista__meta">Playfair Display · Bold · $font-serif</span>
+          <h3>Subtítulo de Tarjeta H3 (18px)</h3>
+        </div>
+        <div class="tipo-lista__item">
+          <span class="tipo-lista__meta">Inter · Regular 400 · $font-sans</span>
+          <p>
+            Cuerpo de texto estándar (16px / line-height 1.6). Diseñado para ofrecer una lectura descansada y accesible sobre fondo papel pergamino.
+          </p>
+        </div>
+        <div class="tipo-lista__item">
+          <span class="tipo-lista__meta">JetBrains Mono · SemiBold 600 · $font-mono</span>
+          <p class="tipo-lista__mono">DORSAL #01 · 1963 · 49,9 KM/H · 40.5891° N, 4.1477° O</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Botones y Estados -->
+    <section class="guia-bloque" aria-labelledby="guia-botones">
+      <h2 id="guia-botones" class="guia-bloque__title">3. Botones y Estados Interactivos</h2>
+      <p class="guia-bloque__desc">
+        Todos los controles interactivos incluyen transición suave y anillo de foco visible de alto contraste (<code>:focus-visible</code>) para navegación por teclado.
+      </p>
+
+      <div class="botones-muestra">
+        <div class="botones-muestra__grupo">
+          <button type="button" class="btn btn--primary">Botón Primario (.btn--primary)</button>
+          <button type="button" class="btn btn--secondary">Botón Secundario (.btn--secondary)</button>
+          <button type="button" class="btn btn--outline">Botón Contorno (.btn--outline)</button>
+          <button type="button" class="btn btn--primary" disabled>Estado Deshabilitado</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Componente Reutilizable BEM -->
+    <section class="guia-bloque" aria-labelledby="guia-componentes">
+      <h2 id="guia-componentes" class="guia-bloque__title">4. Componente Tarjeta (.vehiculo-card)</h2>
+      <div class="componente-muestra">
+        <app-vehiculo-card [vehiculo]="vehiculoMuestra" />
+      </div>
+    </section>
+  </div>
+</section>

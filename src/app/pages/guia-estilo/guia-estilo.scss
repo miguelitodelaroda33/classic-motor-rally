@@ -1,0 +1,156 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.guia-estilo {
+  padding-block: $space-lg;
+
+  &__header {
+    margin-bottom: $space-lg;
+    border-bottom: 2px solid $color-chrome;
+    padding-bottom: $space-md;
+  }
+
+  &__eyebrow {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 600;
+    color: $color-leather;
+  }
+
+  &__subtitle {
+    margin-top: $space-xs;
+    max-width: 65ch;
+  }
+}
+
+.guia-bloque {
+  margin-bottom: $space-xl;
+
+  &__title {
+    margin-bottom: $space-xs;
+  }
+
+  &__desc {
+    margin-bottom: $space-md;
+    max-width: 65ch;
+    font-size: $text-sm;
+  }
+}
+
+.paleta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+
+  @include respond-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.swatch-card {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+
+  &__color {
+    width: 100%;
+    height: 110px;
+    border: none;
+    border-bottom: 1px solid $color-chrome;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: $space-sm;
+    cursor: pointer;
+    color: $color-charcoal;
+
+    &--light-text {
+      color: $color-white;
+    }
+  }
+
+  &__hex {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: $radius-sm;
+    background-color: rgba(0, 0, 0, 0.22);
+    color: $color-white;
+  }
+
+  &__info {
+    padding: $space-md;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__var {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $color-burgundy;
+  }
+
+  &__uso {
+    font-size: $text-sm;
+  }
+}
+
+.tipo-lista {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-radius: $radius-md;
+  padding: $space-md;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  &__item {
+    padding-bottom: $space-md;
+    border-bottom: 1px dashed $color-chrome;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  &__meta {
+    display: block;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $color-leather;
+    margin-bottom: 0.35rem;
+  }
+
+  &__mono {
+    font-family: $font-mono;
+    font-weight: 600;
+    color: $color-racing-green;
+  }
+}
+
+.botones-muestra {
+  background-color: $color-white;
+  border: 1px solid $color-chrome;
+  border-radius: $radius-md;
+  padding: $space-md;
+
+  &__grupo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    align-items: center;
+  }
+}
+
+.componente-muestra {
+  max-width: 380px;
+}
